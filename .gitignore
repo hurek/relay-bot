@@ -2,3 +2,5 @@ relays.sqlite3
 relays.sqlite3-shm
 relays.sqlite3-wal
 venv
+.idea
+model/__pycache__
