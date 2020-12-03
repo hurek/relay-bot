@@ -6,8 +6,6 @@ run_async(init_db())
 
 bot = commands.Bot(command_prefix='!')
 
-allowed_roles = ['admin', 'role2']
-
 
 @commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
 @bot.command(name='relay.help')
