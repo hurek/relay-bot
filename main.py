@@ -15,7 +15,7 @@ async def relay_help(ctx):
                    "🆕`[!relay.create_group GROUP_NAME]` - Create new channel group\n"
                    "🖇`[!relay.add GROUP_ID]` - Add current channel to group with following ID\n"
                    "❌`[!relay.delete]` - Delete relay for the current channel\n"
-                   "")
+                   "♻️`[!relay.delete_group GROUP_ID]' - Delete group and all related relays\n")
     return
 
 
