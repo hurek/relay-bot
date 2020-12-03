@@ -120,4 +120,4 @@ async def relay_processor(message):
                                avatar_url=user.avatar_url, files=files)
 
 
-bot.run('Nzc2MTUyNDkyMzQ1Nzg2NDI5.X6wuVg.3GaMKc7BbTN0FJ9GIekCfzyBs2M')
+bot.run('PUT YOUR TOKEN HERE')
