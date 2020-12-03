@@ -9,7 +9,7 @@ bot = commands.Bot(command_prefix='!')
 allowed_roles = ['admin', 'role2']
 
 
-@commands.has_any_role('admin')
+@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
 @bot.command(name='relay.help')
 async def relay_help(ctx):
     await ctx.send("**Relay commands:**\n"
@@ -21,7 +21,7 @@ async def relay_help(ctx):
     return
 
 
-@commands.has_any_role('admin')
+@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
 @bot.command(name='relay.list')
 async def relay_list(ctx):
     await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
@@ -43,7 +43,7 @@ async def relay_list(ctx):
     await ctx.send(result_list)
 
 
-@commands.has_any_role('admin')
+@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
 @bot.command(name='relay.delete')
 async def relay_delete(ctx):
     await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
@@ -55,7 +55,7 @@ async def relay_delete(ctx):
     return
 
 
-@commands.has_any_role('admin')
+@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
 @bot.command(name='relay.delete_group')
 async def relay_delete_group(ctx, id_group: int):
     await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
@@ -72,7 +72,7 @@ async def relay_delete_group(ctx, id_group: int):
     return
 
 
-@commands.has_any_role('admin')
+@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
 @bot.command(name='relay.create_group')
 async def relay_create_group(ctx, arg):
     await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
@@ -84,7 +84,7 @@ async def relay_create_group(ctx, arg):
     return
 
 
-@commands.has_any_role('admin')
+@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
 @bot.command(name='relay.add')
 async def relay_add(ctx, id_group: int):
     await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
