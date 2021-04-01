@@ -3,11 +3,12 @@ from model.models import *
 from tortoise import run_async
 
 run_async(init_db())
+allowedRoles = ['tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins']
 
 bot = commands.Bot(command_prefix='!')
 
 
-@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
+@commands.has_any_role(*allowedRoles)
 @bot.command(name='relay.help')
 async def relay_help(ctx):
     await ctx.send("**Relay commands:**\n"
@@ -19,10 +20,9 @@ async def relay_help(ctx):
     return
 
 
-@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
+@commands.has_any_role(*allowedRoles)
 @bot.command(name='relay.list')
 async def relay_list(ctx):
-    await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
     if not (groups := await Group.all()):
         await ctx.send("The list of groups is empty. Create new group using `!relay.create_group 'GROUP_NAME'`🤖")
         return
@@ -41,10 +41,9 @@ async def relay_list(ctx):
     await ctx.send(result_list)
 
 
-@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
+@commands.has_any_role(*allowedRoles)
 @bot.command(name='relay.delete')
 async def relay_delete(ctx):
-    await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
     if channel := await Channel.get(channel_id=ctx.message.channel.id):
         await channel.delete()
     if webhook := await bot.fetch_webhook(webhook_id=channel.hook):
@@ -53,10 +52,9 @@ async def relay_delete(ctx):
     return
 
 
-@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
+@commands.has_any_role(*allowedRoles)
 @bot.command(name='relay.delete_group')
 async def relay_delete_group(ctx, id_group: int):
-    await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
     if not (group := await Group.get_or_none(id=id_group)):
         await ctx.send(f"""Group with ID {id_group} does not exist🤖️""")
         return
@@ -70,10 +68,9 @@ async def relay_delete_group(ctx, id_group: int):
     return
 
 
-@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
+@commands.has_any_role(*allowedRoles)
 @bot.command(name='relay.create_group')
 async def relay_create_group(ctx, arg):
-    await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
     if not (group := await Group.get_or_none(name=arg)):
         group = await Group.create(name=arg)
         await ctx.send(f"""Group with name {group.name} was succesfully created with ID {group.id}🤖""")
@@ -82,10 +79,9 @@ async def relay_create_group(ctx, arg):
     return
 
 
-@commands.has_any_role('tBTC Contributors (Team)', 'Admin', ':european_castle: keep team', ':european_castle: keep admins')
+@commands.has_any_role(*allowedRoles)
 @bot.command(name='relay.add')
 async def relay_add(ctx, id_group: int):
-    await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
     channel = ctx.message.channel
     webhooks = await channel.webhooks()
     if not (group := await Group.get_or_none(id=id_group)):
@@ -103,7 +99,6 @@ async def relay_add(ctx, id_group: int):
 
 @bot.listen('on_message')
 async def relay_processor(message):
-    await Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']})
     if message.author.bot is True or message.content.startswith('!relay'):
         return
     user = bot.get_user(message.author.id)
@@ -118,4 +113,8 @@ async def relay_processor(message):
                                avatar_url=user.avatar_url, files=files)
 
 
-bot.run('PUT YOUR TOKEN HERE')
+
+
+if __name__ == "__main__":
+    bot.loop.run_until_complete(Tortoise.init(db_url='sqlite://relays.sqlite3', modules={'models': ['model.models']}))
+    bot.run(config.TOKEN)
