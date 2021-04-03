@@ -7,6 +7,7 @@ A bot that can relay messages between channels on different Discord servers
 2. `cd relay-bot`
 2. Install requirements from `requirements.txt` for `Python 3` with `pip3 install -r requirements.txt`
 3. Go to [Discord Developers portal](https://discord.com/developers/) and create new Application. Official instructions [here](https://discordpy.readthedocs.io/en/latest/discord.html).
+4. Go to Bot -> Privileged Gateway Intents section and enable members intents.
 4. `mv configExample.py config.py` and copy your bot token from the dashboard here.
 5. `cd /etc/systemd/system`
 6. `sudo nano relay-bot.service`
