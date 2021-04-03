@@ -8,10 +8,10 @@ A bot that can relay messages between channels on different Discord servers
 2. Install requirements from `requirements.txt` for `Python 3` with `pip3 install -r requirements.txt`
 3. Go to [Discord Developers portal](https://discord.com/developers/) and create new Application. Official instructions [here](https://discordpy.readthedocs.io/en/latest/discord.html).
 4. Go to Bot -> Privileged Gateway Intents section and enable members intents.
-4. `mv configExample.py config.py` and copy your bot token from the dashboard here.
-5. `cd /etc/systemd/system`
-6. `sudo nano relay-bot.service`
-7. Copy and paste following settings:
+5. `mv configExample.py config.py` and copy your bot token from the dashboard here.
+6. `cd /etc/systemd/system`
+7. `sudo nano relay-bot.service`
+8. Copy and paste following settings:
 ```
 [Unit]
 Description=Telegram bot 'Relay Bot'
@@ -28,14 +28,14 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
-8. Save file and run following commands to enable bot service:
+9. Save file and run following commands to enable bot service:
 ```
 sudo systemctl daemon-reload
 sudo systemctl start relay-bot.service
 sudo systemctl status relay-bot.service
 ```
-9. Go to Application dashboard -> OAuth2 and check the box for **Bot**.
-10. Set following permissions for Bot:
+10. Go to Application dashboard -> OAuth2 and check the box for **Bot**.
+11. Set following permissions for Bot:
 * Manage Webhooks
 * View Channels
 * Send Messages
@@ -44,5 +44,5 @@ sudo systemctl status relay-bot.service
 * Read Message History
 * Mention Everyone
 * Use External Emojis
-11. Copy invitation link to your browser, add bot to your server.
-12. Send `!relay.help` to see list of Bot commands. 
+12. Copy invitation link to your browser, add bot to your server.
+13. Send `!relay.help` to see list of Bot commands. 
