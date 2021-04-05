@@ -19,7 +19,7 @@ allowedRoles = [
 
 intents = Intents.default()
 intents.members = True
-bot = commands.Bot(command_prefix="!relay.", help_command=None, intents=intents)
+bot = commands.Bot(command_prefix="!bridge.", help_command=None, intents=intents)
 
 
 @commands.has_any_role(*allowedRoles)
