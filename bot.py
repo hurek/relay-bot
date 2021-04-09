@@ -30,11 +30,11 @@ async def relay_help(ctx):
     :param ctx: Discord Context Object
     """
     widget = Embed(description="Available commands for Bridge-Bot", color=0x03D692, title="Bridge-Bot Help")
-    widget.add_field(name="!relay.list", value="The list of groups of relay channels", inline=False)
-    widget.add_field(name="!relay.create_group GROUP_NAME", value="Create new channel group", inline=False)
-    widget.add_field(name="!relay.add GROUP_ID", value="Add current channel to group with following ID", inline=False)
-    widget.add_field(name="!relay.delete", value="Delete relay for the current channel", inline=False)
-    widget.add_field(name="!relay.delete_group GROUP_ID", value="Delete group and all related relays", inline=False)
+    widget.add_field(name="!bridge.list", value="The list of groups of relay channels", inline=False)
+    widget.add_field(name="!bridge.create_group GROUP_NAME", value="Create new channel group", inline=False)
+    widget.add_field(name="!bridge.add GROUP_ID", value="Add current channel to group with following ID", inline=False)
+    widget.add_field(name="!bridge.delete", value="Delete relay for the current channel", inline=False)
+    widget.add_field(name="!bridge.delete_group GROUP_ID", value="Delete group and all related relays", inline=False)
     # widget.set_thumbnail(url="WHICH LOGO?")
     await ctx.send(embed=widget)
 
@@ -59,7 +59,7 @@ async def relay_list(ctx):
         group_name_id = f"{group.name} [ID {str(group.id)}]:"
 
         if not (channels := await Channel.filter(group_id=group.id)):
-            widget.add_field(name=group_name_id, value="Group is empty")
+            widget.add_field(name=group_name_id, value="Group is empty", inline=False)
             continue
 
         channel_list = []
@@ -68,7 +68,7 @@ async def relay_list(ctx):
             channel_list.append(f"{channel.guild.name}[{channel.name}]")
 
         channel_list = '\n'.join(channel_list)
-        widget.add_field(name=group_name_id, value='```' + channel_list + '```')
+        widget.add_field(name=group_name_id, value='```' + channel_list + '```', inline=False)
     await ctx.send(embed=widget)
 
 
