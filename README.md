@@ -14,7 +14,7 @@ A bot that can relay messages between channels on different Discord servers
 8. Copy and paste following settings:
 ```
 [Unit]
-Description=Telegram bot 'Relay Bot'
+Description=Discord bot 'Relay Bot'
 After=syslog.target
 After=network.target
 
