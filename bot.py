@@ -182,7 +182,7 @@ async def relay_processor(message):
     :param message: Discord Message Object
     """
     # Checking that the message is not from a bot, and also that it is not a command
-    if message.author.bot is True or message.content.startswith('!relay'):
+    if message.author.bot is True or message.content.startswith('!bridge'):
         return
 
     # Get User object
