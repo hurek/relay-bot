@@ -31,7 +31,7 @@ async def relay_help(ctx):
     """
     widget = Embed(description="Available commands for Bridge-Bot", color=0x03D692, title="Bridge-Bot Help")
     widget.add_field(name="!bridge.list", value="The list of groups of relay channels", inline=False)
-    widget.add_field(name="!bridge.create_group GROUP_NAME", value="Create new channel group", inline=False)
+    widget.add_field(name="!bridge.create_group 'GROUP_NAME'", value="Create new channel group", inline=False)
     widget.add_field(name="!bridge.add GROUP_ID", value="Add current channel to group with following ID", inline=False)
     widget.add_field(name="!bridge.delete", value="Delete relay for the current channel", inline=False)
     widget.add_field(name="!bridge.delete_group GROUP_ID", value="Delete group and all related relays", inline=False)
@@ -50,7 +50,7 @@ async def relay_list(ctx):
     # Get list of all groups
     if not (groups := await Group.all()):
         widget.add_field(name="The list of groups is empty",
-                         value="Create new group using `!relay.create_group 'GROUP_NAME'`", inline=False)
+                         value="Create new group using `!bridge.create_group 'GROUP_NAME'`", inline=False)
         await ctx.send(embed=widget)
         return
 
